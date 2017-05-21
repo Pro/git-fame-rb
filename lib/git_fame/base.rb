@@ -81,6 +81,7 @@ module GitFame
       # Format: [ [ :method_on_author, "custom column name" ] ]
       @visible_fields = [
         :name,
+	:mail,
         :loc,
         :commits,
         :files,
@@ -364,7 +365,7 @@ module GitFame
     end
 
     def author_by_email(email, name = nil)
-      @authors[(email || "").strip] ||= Author.new({ parent: self, name: name })
+      @authors[(email || "").strip] ||= Author.new({ parent: self, name: name, mail: email })
     end
 
     # Lists the paths to contained git submodules
